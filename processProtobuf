@@ -1,0 +1,4 @@
+$(npm bin)/pbjs -t static-module -w closure -r protobuf -es6 -o src/test/dto/dto.js src/proto/definitions/*
+
+$(npm bin)/pbjs -t static-module -w commonjs -es6 -o src/proto/generated/dto.js src/proto/definitions/*
+$(npm bin)/pbts -o src/proto/generated/dto.d.ts src/proto/generated/dto.js
