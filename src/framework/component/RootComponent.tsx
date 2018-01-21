@@ -3,21 +3,22 @@ import {BaseComponent} from "./BaseComponent";
 import {Control} from "../interface/Control";
 
 export abstract class RootComponent<
-  ControlT extends Control<RootProps, StateT>,
+  ControlT extends Control<PropsT, StateT>,
+  PropsT = RootProps,
   StateT = any>
-  extends BaseComponent<ControlT, RootProps, RootProps, StateT>{
+  extends BaseComponent<ControlT, PropsT, PropsT, StateT>{
 
-  constructor(props: RootProps) {
+  constructor(props: PropsT) {
     super(props);
 
-    this.control = this.createControl();
+    this.control = this.createControl(props);
     this.control.attach(this);
     this.control.apply(props);
     this.state = this.control.initialState();
   }
 
-  public componentWillReceiveProps(nextProps: RootProps, nextContext: any): void {
+  public componentWillReceiveProps(nextProps: PropsT, nextContext: any): void {
     this.control.apply(nextProps);
   }
-  public abstract createControl(): ControlT;
+  public abstract createControl(props: PropsT): ControlT;
 }

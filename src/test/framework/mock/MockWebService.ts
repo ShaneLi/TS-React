@@ -1,22 +1,31 @@
-import {RequestBuilder, RoutingConfig, WebService} from "../../../framework/interface/webService";
-import {isPresent} from "../../../framework/utils/common";
-import {MockModel} from "./mockModel";
-import {Functions} from "../../../framework/utils/functions";
-import {Bind} from "../../../framework/utils/annotations";
-import {Strings} from "../../../framework/utils/strings";
+import {RequestBuilder, RoutingConfig, WebService} from "../../../framework/interface/WebService";
+import {isPresent} from "../../../framework/utils/CommonFunctions";
+import {MockModel} from "./MockModel";
+import {Functions} from "../../../framework/utils/Functions";
+import {Bind} from "../../../framework/utils/Annotations";
+import {Strings} from "../../../framework/utils/Strings";
 
 export class MockRequestBuilder implements RequestBuilder {
-  private _data: any;
-  private _convertedData: any;
+  public params: Array<String>;
   private _resolve: Function;
   private _converter: Function;
   private _promise: Promise<any>;
 
-  public params: Array<String>;
-
   constructor(public readonly method: string,
               public readonly url: string,
               private _enqueue: (_: MockRequestBuilder) => void) {
+  }
+
+  private _data: any;
+
+  public get data(): any {
+    return this._data;
+  }
+
+  private _convertedData: any;
+
+  public get convertedData(): any {
+    return this._convertedData;
   }
 
   public withData<T>(data: T, converter: (_: T) => any): RequestBuilder {
@@ -42,14 +51,6 @@ export class MockRequestBuilder implements RequestBuilder {
 
   public withRouting(routing: RoutingConfig): RequestBuilder {
     return this;
-  }
-
-  public get data(): any {
-    return this._data;
-  }
-
-  public get convertedData(): any {
-    return this._convertedData;
   }
 
   public async respondAndWaitForResult(response: any, model: MockModel): Promise<any> {

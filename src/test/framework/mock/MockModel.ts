@@ -1,11 +1,13 @@
-import {BaseModel} from "../../../framework/baseModel";
-import {RootProps} from "../../../framework/control/rootControl";
-import {MockDependency} from "./mockDependency";
-import {isEmptyArray, isEmptyString, isFunction, isPresent} from "../../../framework/utils/common";
-import {Control, StateContainer} from "../../../framework/interface/control";
-import {ModelControl} from "../../../framework/control/modelControl";
-import {ChildControl} from "../../../framework/control/childControl";
-import {Bind} from "../../../framework/utils/annotations";
+import {BaseModel} from "../../../framework/BaseModel";
+import {RootProps} from "../../../framework/control/RootControl";
+import {
+  isEmptyArray, isEmptyString, isFunction, isPresent
+} from "../../../framework/utils/CommonFunctions";
+import {Control, StateContainer} from "../../../framework/interface/Control";
+import {ModelControl} from "../../../framework/control/ModelControl";
+import {ChildControl} from "../../../framework/control/ChildControl";
+import {Bind} from "../../../framework/utils/Annotations";
+import {MockDependency} from "./MockDependency";
 
 interface DispatchCall {
   type: string;
@@ -19,9 +21,9 @@ class Command {
 }
 
 class StateHolder implements StateContainer<any> {
-  constructor(private _model: MockModel) {}
-
   public state: any = {};
+
+  constructor(private _model: MockModel) {}
 
   public setState(f: (prevState: any) => any, callback?: () => any): void {
     let outResolve: Function;
@@ -50,6 +52,14 @@ export class MockModel extends BaseModel<any> implements RootProps {
 
   constructor() {
     super("", undefined)
+  }
+
+  private static getModelName(type: string): string {
+    let result = type.replace(BaseModel.SET_ACTION, "");
+    if (result.length === type.length) {
+      fail("invalid type " + type);
+    }
+    return result
   }
 
   @Bind
@@ -105,35 +115,12 @@ export class MockModel extends BaseModel<any> implements RootProps {
     this.applyValue();
   }
 
-  private applyValue() {
-    this._rootControl.apply(this._value);
-  }
-
-  private attachSubControl(control: Control<any, any>): void {
-    let stateHolder = new StateHolder(this);
-    stateHolder.state = control.initialState();
-    this._stateMap.set(control, stateHolder);
-    control.attach(stateHolder);
-
-    control.visitChildren(child =>
-      this.attachSubControl(child)
-    )
-  }
-
   public getState<T>(control: Control<any, T>): T {
     return this._stateMap.get(control).state;
   }
 
   public addCommand(command: Command): void {
     this._commandQueue.push(command);
-  }
-
-  private static getModelName(type: string): string {
-    let result = type.replace(BaseModel.SET_ACTION, "");
-    if (result.length === type.length) {
-      fail("invalid type " + type);
-    }
-    return result
   }
 
   public dispatchOne(): void {
@@ -159,5 +146,20 @@ export class MockModel extends BaseModel<any> implements RootProps {
     while (!isEmptyArray(this._commandQueue)) {
       await this.dispatchAllExisting();
     }
+  }
+
+  private applyValue() {
+    this._rootControl.apply(this._value);
+  }
+
+  private attachSubControl(control: Control<any, any>): void {
+    let stateHolder = new StateHolder(this);
+    stateHolder.state = control.initialState();
+    this._stateMap.set(control, stateHolder);
+    control.attach(stateHolder);
+
+    control.visitChildren(child =>
+      this.attachSubControl(child)
+    )
   }
 }

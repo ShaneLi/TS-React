@@ -1,5 +1,5 @@
-import {SubControl} from "../../control/subControl";
-import {MockModel} from "../framework/mock/mockModel";
+import {SubControl} from "../../control/SubControl";
+import {MockModel} from "../framework/mock/MockModel";
 
 describe('test Sub control', () => {
   let model: MockModel;

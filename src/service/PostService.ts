@@ -2,7 +2,7 @@ import {BaseWebService} from "../framework/webService/BaseWebService";
 import {WebService} from "../framework/interface/WebService";
 import {PostDTO} from "../proto/generated/dto";
 import {RoutingConfigs} from "../framework/webService/RoutingConfigs";
-import {Post} from "../control/topControl";
+import {Post} from "../control/TopControl";
 
 export class PostService extends BaseWebService {
   constructor(service: WebService) {

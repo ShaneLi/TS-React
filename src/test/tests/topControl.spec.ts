@@ -1,6 +1,6 @@
-import {MockModel} from "../framework/mock/mockModel";
-import {Post, TopControl} from "../../control/topControl";
-import {MockWebService} from "../framework/mock/mockWebService";
+import {MockModel} from "../framework/mock/MockModel";
+import {Post, TopControl} from "../../control/TopControl";
+import {MockWebService} from "../framework/mock/MockWebService";
 
 describe('test Sub control', () => {
   let model: MockModel;

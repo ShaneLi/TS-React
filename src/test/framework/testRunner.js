@@ -13,7 +13,7 @@ SystemJS.registerDynamic("proto/generated/dto", [], true, function(require, expo
 
 function getTestName(module) {
     // a unit_test needs to be under "tests" folder and ends with ".spec.ts"
-    const regex = new RegExp("\/tests(?:\/([a-zA-Z_0-9]+))+.spec$");
+    const regex = new RegExp("(?:\/([a-zA-Z_0-9]+))+.spec$");
     const results = regex.exec(module.name);
     return results ? results[results.length - 1] : undefined;
 }

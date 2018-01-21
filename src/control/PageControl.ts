@@ -1,6 +1,6 @@
-import {RootControl, RootProps} from "../framework/control/rootControl";
-import {PageModel, TopProp} from "../model/pageModel";
-import {TopControl} from "./topControl";
+import {RootControl, RootProps} from "../framework/control/RootControl";
+import {PageModel, TopProp} from "../model/PageModel";
+import {TopControl} from "./TopControl";
 
 export interface PageProps extends RootProps {
   top: TopProp
@@ -9,9 +9,9 @@ export interface PageProps extends RootProps {
 export class PageControl extends RootControl<PageProps, void> {
   public topControl: TopControl;
 
-  constructor(prop: PageProps) {
-    super(prop);
+  constructor(props: PageProps) {
+    super();
 
-    this.topControl = this.addControl(new TopControl(PageModel, this.props))
+    this.topControl = this.addControl(new TopControl(PageModel, props))
   }
 }

@@ -2,23 +2,23 @@ import * as React from 'react';
 import { connect } from 'dva';
 
 import {RootComponent} from "../framework/component/RootComponent";
-import {SubForm} from "./subForm";
-import {TopForm} from "./topForm";
-import {PageControl, PageProps} from "../control/pageControl";
-import {Functions} from "../framework/utils/functions";
+import {TopForm} from "./TopForm";
+import {PageControl, PageProps} from "../control/PageControl";
+import {Functions} from "../framework/utils/Functions";
+import {RootProps} from "../framework/control/RootControl";
+import {RenderResult} from "../framework/component/BaseComponent";
 
 class Page extends RootComponent<PageControl, PageProps> {
-  public createControl(): PageControl {
-    return new PageControl(this.props);
+  public createControl(props: PageProps): PageControl {
+    return new PageControl(props);
   }
 
-  render() {
+  public doRender(control: PageControl, props: RootProps, state: any): RenderResult {
     return (
       <div>
-        <TopForm control = { this.control.topControl } />
-        <SubForm control = { this.control.topControl.subControl } />
+        <TopForm control = { control.topControl } />
       </div>
     );
-  };
+  }
 }
 export default connect(Functions.identity)(Page);

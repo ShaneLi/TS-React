@@ -1,4 +1,3 @@
-import {message} from "antd";
 import {RequestInit, Response} from "dva/fetch";
 const fetch: (_: any, _2: any) => Promise<Response> = require("dva/fetch");
 
@@ -33,7 +32,6 @@ class FetchRequestBuilder implements RequestBuilder {
   };
 
   private static failed<T>(error: any): T {
-    message.error(error.message);
     throw error
   };
 

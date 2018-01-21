@@ -1,8 +1,9 @@
 import dva from 'dva';
 import './index.html';
-import {PageModel} from './model/pageModel';
-import {DependencyModel} from './framework/dependencyModel';
 import router from './router';
+
+import {PageModel} from './model/PageModel';
+import {DependencyModel} from './framework/DependencyModel';
 
 // local global style
 require('./index.less');
