@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Router, Route } from 'dva/router';
+import {Route, Router} from "react-router";
 import IndexPage from './component/IndexPage';
 
 export default ({ history }) => {

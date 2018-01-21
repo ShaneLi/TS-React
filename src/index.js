@@ -1,7 +1,7 @@
 import dva from 'dva';
 import './index.html';
-import router from './router';
 
+import router from './Router';
 import {PageModel} from './model/PageModel';
 import {DependencyModel} from './framework/DependencyModel';
 
