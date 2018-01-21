@@ -1,10 +1,10 @@
-import {TopProp} from "../model/pageModel";
-import {PostService} from "../service/postService";
-import {BaseModel} from "../framework/baseModel";
-import {ModelControl} from "../framework/control/modelControl";
-import {SubControl} from "./subControl";
-import {RootProps} from "../framework/control/rootControl";
-import {Bind} from "../framework/utils/annotations";
+import {TopProp} from "../model/PageModel";
+import {PostService} from "../service/PostService";
+import {BaseModel} from "../framework/BaseModel";
+import {ModelControl} from "../framework/control/ModelControl";
+import {SubControl} from "./SubControl";
+import {RootProps} from "../framework/control/RootControl";
+import {Bind} from "../framework/utils/Annotations";
 
 export class Post {
   constructor(public id: number,
@@ -36,11 +36,11 @@ export class TopControl extends ModelControl<TopProp, TopState> {
   }
 
   public get loaded(): string {
-    return TopControl.booleanToString(this.prop.loaded);
+    return TopControl.booleanToString(this.props.loaded);
   }
 
   public get loading(): string {
-    return TopControl.booleanToString(this.prop.loading);
+    return TopControl.booleanToString(this.props.loading);
   }
 
   @Bind
@@ -48,7 +48,7 @@ export class TopControl extends ModelControl<TopProp, TopState> {
     this.updateState(state =>
       ({count : state.count + 1, response: []})
     );
-    return this.setProp({loaded: false});
+    return this.setProps({loaded: false});
   }
 
   @Bind
@@ -68,11 +68,11 @@ export class TopControl extends ModelControl<TopProp, TopState> {
   }
 
   private showLoading(): Promise<any> {
-    return this.setProp({loading: true, loaded: false});
+    return this.setProps({loading: true, loaded: false});
   }
 
   private hideLoading(): Promise<any> {
-    return this.setProp({loading: false, loaded: true});
+    return this.setProps({loading: false, loaded: true});
   }
 
   private static booleanToString(value: Boolean): string {

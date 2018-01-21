@@ -1,7 +1,7 @@
-import {BaseWebService} from "../framework/webService/baseWebService";
-import {WebService} from "../framework/interface/webService";
+import {BaseWebService} from "../framework/webService/BaseWebService";
+import {WebService} from "../framework/interface/WebService";
 import {PostDTO} from "../proto/generated/dto";
-import {RoutingConfigs} from "../framework/webService/routingConfigs";
+import {RoutingConfigs} from "../framework/webService/RoutingConfigs";
 import {Post} from "../control/topControl";
 
 export class PostService extends BaseWebService {

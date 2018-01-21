@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {TopControl, TopState} from "../control/topControl";
-import {ChildComponent} from "../framework/component/childComponents";
+import {TopControl, TopState} from "../control/TopControl";
+import {ChildComponent} from "../framework/component/ChildComponents";
 
 const style = require("./style/TopForm.less");
 

@@ -1,4 +1,4 @@
-import {Control} from "./control";
+import {Control} from "./Control";
 
 export interface PropConnection<ParentT, ChildT> {
   getValue(parent: ParentT): ChildT;

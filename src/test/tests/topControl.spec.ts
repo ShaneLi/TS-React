@@ -22,14 +22,14 @@ describe('test Sub control', () => {
     control.fetch();
     await model.dispatchAll();
 
-    expect(control.prop.loading).toBeTruthy();
-    expect(control.prop.loaded).toBeFalsy();
+    expect(control.props.loading).toBeTruthy();
+    expect(control.props.loaded).toBeFalsy();
 
     await service.expectSingleRequest("posts").respond(posts);
     await model.dispatchAll();
 
-    expect(control.prop.loading).toBeFalsy();
-    expect(control.prop.loaded).toBeTruthy();
+    expect(control.props.loading).toBeFalsy();
+    expect(control.props.loaded).toBeTruthy();
     expect(model.getState(control).response).toEqual(posts);
   });
 
@@ -38,16 +38,16 @@ describe('test Sub control', () => {
     control.post();
     await model.dispatchAll();
 
-    expect(control.prop.loading).toBeTruthy();
-    expect(control.prop.loaded).toBeFalsy();
+    expect(control.props.loading).toBeTruthy();
+    expect(control.props.loaded).toBeFalsy();
 
     let request = service.expectSingleRequest("posts");
     expect(request.data.id).toEqual(8888);
     let result = await request.respondAndWaitForResult(posts[1], model);
     expect(result).toEqual(posts[1]);
 
-    expect(control.prop.loading).toBeFalsy();
-    expect(control.prop.loaded).toBeTruthy();
+    expect(control.props.loading).toBeFalsy();
+    expect(control.props.loaded).toBeTruthy();
     expect(model.getState(control).response).toEqual([posts[1]]);
   })
 });

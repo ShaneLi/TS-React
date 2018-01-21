@@ -1,4 +1,4 @@
-import {WebService} from "./webService";
+import {WebService} from "./WebService";
 
 export interface Dependency {
   webService: WebService

@@ -12,7 +12,7 @@ describe('test Sub control', () => {
   });
 
   it('should have initial value', function () {
-    expect(control.prop.count).toEqual(0);
+    expect(control.props.count).toEqual(0);
   });
 
   it('should increment count', function () {
@@ -20,6 +20,6 @@ describe('test Sub control', () => {
     control.increment();
 
     model.dispatchAllExisting();
-    expect(control.prop.count).toEqual(2);
+    expect(control.props.count).toEqual(2);
   });
 });

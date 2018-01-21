@@ -1,4 +1,4 @@
-import {BaseModel} from "../framework/baseModel";
+import {BaseModel} from "../framework/BaseModel";
 
 export interface SubCount {
   count: number

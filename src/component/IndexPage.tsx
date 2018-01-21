@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { connect } from 'dva';
 
-import {RootComponent} from "../framework/component/rootComponent";
+import {RootComponent} from "../framework/component/RootComponent";
 import {SubForm} from "./subForm";
 import {TopForm} from "./topForm";
 import {PageControl, PageProps} from "../control/pageControl";
+import {Functions} from "../framework/utils/functions";
 
 class Page extends RootComponent<PageControl, PageProps> {
   public createControl(): PageControl {
@@ -20,4 +21,4 @@ class Page extends RootComponent<PageControl, PageProps> {
     );
   };
 }
-export default connect(data => data)(Page);
+export default connect(Functions.identity)(Page);

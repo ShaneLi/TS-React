@@ -1,4 +1,4 @@
-import {isFunction} from "./common";
+import {isFunction} from "./CommonFunctions";
 
 export function Bind<T extends Function>(target: object, propertyKey: string, descriptor: TypedPropertyDescriptor<T>): TypedPropertyDescriptor<T> | void {
   if(!isFunction(descriptor.value)) {

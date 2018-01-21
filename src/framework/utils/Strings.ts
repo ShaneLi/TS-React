@@ -1,5 +1,5 @@
-import {isEmptyArray, isEmptyString, isPresent} from "./common";
-import {Functions} from "./functions";
+import {isEmptyArray, isEmptyString, isPresent} from "./CommonFunctions";
+import {Functions} from "./Functions";
 
 export class Strings {
   public static ensureTrailing(value: string, trailing: string): string {

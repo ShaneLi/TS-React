@@ -1,5 +1,5 @@
-import {Control} from "../interface/control";
-import {ControlConnection, PropConnection} from "../interface/connection";
+import {Control} from "../interface/Control";
+import {ControlConnection, PropConnection} from "../interface/Connection";
 
 export abstract class BaseControlConnection<ParentT, ChildT,
   ControlT extends Control<ParentT> = Control<ParentT>>
@@ -10,8 +10,8 @@ export abstract class BaseControlConnection<ParentT, ChildT,
   }
 
   public async updateProp(f: (oldChild: ChildT) => ChildT): Promise<any> {
-    return this.parent.updateProp(oldParentT =>
-      this.setValue(this.parent.prop, f(this.getValue(oldParentT)))
+    return this.parent.updateProps(oldParentT =>
+      this.setValue(this.parent.props, f(this.getValue(oldParentT)))
     )
   }
 

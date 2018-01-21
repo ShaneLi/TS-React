@@ -1,6 +1,6 @@
-import {isEmptyArray, isEmptyString} from "../utils/common";
-import {RoutingConfig} from "../interface/webService";
-import {Strings} from "../utils/strings";
+import {isEmptyArray, isEmptyString} from "../utils/CommonFunctions";
+import {RoutingConfig} from "../interface/WebService";
+import {Strings} from "../utils/Strings";
 
 class BasicRoutingConfig implements RoutingConfig {
   private _baseUrl: string;

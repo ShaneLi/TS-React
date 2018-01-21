@@ -12,6 +12,6 @@ export class PageControl extends RootControl<PageProps, void> {
   constructor(prop: PageProps) {
     super(prop);
 
-    this.topControl = this.addControl(new TopControl(PageModel, this.prop))
+    this.topControl = this.addControl(new TopControl(PageModel, this.props))
   }
 }

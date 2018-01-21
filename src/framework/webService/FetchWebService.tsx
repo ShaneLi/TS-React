@@ -1,11 +1,14 @@
 import {message} from "antd";
 import {RequestInit, Response} from "dva/fetch";
-import {RequestBuilder, RoutingConfig, WebService} from "../interface/webService";
-import {isPresent} from "../utils/common";
-import {Functions} from "../utils/functions";
 const fetch: (_: any, _2: any) => Promise<Response> = require("dva/fetch");
 
+import {isPresent} from "../utils/CommonFunctions";
+import {Functions} from "../utils/Functions";
+import {RequestBuilder, RoutingConfig, WebService} from "../interface/WebService";
+
 class FetchRequestBuilder implements RequestBuilder {
+  public static CONTENT_TYPE: string = "Content-type";
+  public static JSON_TYPE: string = "application/json; charset=UTF-8";
   private _info: RequestInit;
   private _params: Array<string>;
   private _routing: RoutingConfig;
@@ -33,9 +36,6 @@ class FetchRequestBuilder implements RequestBuilder {
     message.error(error.message);
     throw error
   };
-
-  public static CONTENT_TYPE: string = "Content-type";
-  public static JSON_TYPE: string = "application/json; charset=UTF-8";
 
   public withParams(...params: Array<string>): RequestBuilder {
     this._params = params;

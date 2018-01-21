@@ -1,4 +1,4 @@
-import {RequestBuilder, RoutingConfig, WebService} from "../interface/webService";
+import {RequestBuilder, RoutingConfig, WebService} from "../interface/WebService";
 
 export class BaseWebService implements WebService {
   constructor(private _service: WebService,

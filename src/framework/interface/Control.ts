@@ -1,19 +1,19 @@
-import {ControlConnection} from "./connection";
+import {ControlConnection} from "./Connection";
 
 export interface StateContainer<StateT> {
   state: StateT;
   setState(f: (prevState: StateT) => StateT, callback?: () => any): void;
 }
 
-export interface Control<PropT, StateT = any, ParentT extends Control<any> = Control<any, any, any>> {
-  readonly prop: PropT;
+export interface Control<PropsT, StateT = any, ParentT extends Control<any> = Control<any, any, any>> {
+  readonly props: PropsT;
   readonly parent: ParentT;
   readonly key: string;
 
-  apply(prop: PropT): void;
+  apply(props: PropsT): void;
   visitChildren<T>(f: (control: Control<any>) => T): Array<T>;
 
-  setParent(parent: ControlConnection<any, PropT, ParentT>): void;
+  setParent(parent: ControlConnection<any, PropsT, ParentT>): void;
   attach(container: StateContainer<StateT>): void;
 
   initialState(): StateT;
@@ -22,8 +22,7 @@ export interface Control<PropT, StateT = any, ParentT extends Control<any> = Con
   updateFullState(f: (prevState: StateT) => StateT): void;
   updateStateAsync(f: (prevState: StateT) => StateT): Promise<any>;
 
-
-  setProp(prop: PropT): Promise<any>;
-  updateProp(f: (_: PropT) => PropT): Promise<any>;
-  updateFullProp(f: (oldProp: PropT) => PropT): Promise<any>;
+  setProps(props: PropsT): Promise<any>;
+  updateProps(f: (_: PropsT) => PropsT): Promise<any>;
+  updateFullProp(f: (oldProps: PropsT) => PropsT): Promise<any>;
 }

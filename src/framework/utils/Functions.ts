@@ -1,4 +1,4 @@
-import {isPresent} from "./common";
+import {isPresent} from "./CommonFunctions";
 
 export class Functions {
   public static identity<T>(input: T): T {
