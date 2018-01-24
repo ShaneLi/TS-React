@@ -5,8 +5,9 @@ import {ModelControl} from "../framework/control/ModelControl";
 import {SubControl} from "./SubControl";
 import {RootProps} from "../framework/control/RootControl";
 import {Bind} from "../framework/utils/Annotations";
+import {WithId} from "../framework/interface/WithId";
 
-export class Post {
+export class Post implements WithId {
   constructor(public id: number,
               public userId: number,
               public title: string,

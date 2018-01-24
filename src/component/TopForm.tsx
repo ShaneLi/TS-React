@@ -19,15 +19,15 @@ export class TopForm extends ChildComponent<TopControl, TopProp, TopState> {
         </div>
 
         <div className={style.verticalContainer}>
-          <div>Loaded: {this.control.loaded}</div>
-          <div>Loading: {this.control.loading}</div>
-          <div>Count: {this.state.count}</div>
+          <div>Loaded: {control.loaded}</div>
+          <div>Loading: {control.loading}</div>
+          <div>Count: {state.count}</div>
         </div>
 
         <div className={style.verticalContainer}>
-          <div className={style.button} onClick = {this.control.fetch}>Fetch</div>
-          <div className={style.button} onClick = {this.control.post}>Post</div>
-          <div className={style.button} onClick = {this.control.clear}>Clear</div>
+          <div className={style.button} onClick = {control.fetch}>Fetch</div>
+          <div className={style.button} onClick = {control.post}>Post</div>
+          <div className={style.button} onClick = {control.clear}>Clear</div>
         </div>
 
         <SubForm control = { control.subControl } />
